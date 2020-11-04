@@ -11,6 +11,7 @@
         <module>service-provider8011</module>
         <module>service-gateway8000</module>
         <module>service-consumer9012</module>
+        <module>service-provider8012</module>
     </modules>
     <packaging>pom</packaging>
 
