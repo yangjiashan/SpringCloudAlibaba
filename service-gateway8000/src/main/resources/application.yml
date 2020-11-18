@@ -12,10 +12,17 @@ spring:
       discovery:
         locator:
           enabled: true
-      routes:
-        - id: payment_route # 路由的id,没有规定规则但要求唯一,建议配合服务名
-            #匹配后提供服务的路由地址
-            #uri: http://localhost:8011
-          uri: lb://service-provider8011
-          predicates:
-            - Path=/testString # 断言，路径相匹配的进行路由
+#      routes:
+#        - id: payment_route # 路由的id,没有规定规则但要求唯一,建议配合服务名
+#            #匹配后提供服务的路由地址
+#            #uri: http://localhost:8011
+#          uri: lb://service-provider8011
+#          predicates:
+#            - Path=/testString # 断言，路径相匹配的进行路由
+
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "https://docs.spring.io"
+            allowedMethods:
+            - GET
