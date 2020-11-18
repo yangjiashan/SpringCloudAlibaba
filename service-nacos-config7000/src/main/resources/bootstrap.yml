@@ -1,0 +1,23 @@
+spring:
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+#      config:
+#        server-addr: 127.0.0.1:8848
+#        file-extension: yaml
+#
+      discovery:
+        server-addr: 127.0.0.1:8848
+#
+#
+#
+  application:
+    name: service-nacos-config7000
+#
+server:
+  servlet:
+    context-path: /nacos
+
+
+  port: 8080

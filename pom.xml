@@ -12,6 +12,7 @@
         <module>service-gateway8000</module>
         <module>service-consumer9012</module>
         <module>service-provider8012</module>
+        <module>service-nacos-config7000</module>
     </modules>
     <packaging>pom</packaging>
 
