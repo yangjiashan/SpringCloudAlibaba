@@ -3,10 +3,20 @@ spring:
     active: dev
   cloud:
     nacos:
-#      config:
-#        server-addr: 127.0.0.1:8848
-#        file-extension: yaml
-#
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        namespace: 6d94c2eb-42f7-4aca-a5ac-66351abe85d8
+        group: 测试组
+
+        #多配置
+#        ext-config[0]:
+#          data-id: service-nacos-config7000-dev.yaml
+#          group: 测试组
+#          refresh: true
+
+
+      #
       discovery:
         server-addr: 127.0.0.1:8848
 #
