@@ -10,3 +10,29 @@ spring:
         server-addr: 127.0.0.1:8848
         #指定注册服务的ip
         ip: 192.168.4.206
+        namespace: cdb2d77b-59b5-4695-960b-567a4adf7b10
+
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: 192.168.4.206:8080
+
+      datasource:
+        ds1:
+          nacos:
+            # nacos连接地址
+            server-addr: 127.0.0.1:8848
+            # nacos连接的分组
+            group-id: DEFAULT_GROUP
+            # 路由存储规则
+            rule-type: flow
+            # 读取配置文件的 data-id
+            data-id: service-consumer9012
+            # 读取文件类型为json
+            data-type: json
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
