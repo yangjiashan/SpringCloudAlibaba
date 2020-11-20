@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RefreshScope
 public class TestFlushConfig {
 
-    @Value("${server.port}")
-    private String serverPort;
+    @Value("${app.time}")
+    private String time;
 
     @RequestMapping("/testString")
     public String testString(){
-        return serverPort;
+        return time;
     }
 }

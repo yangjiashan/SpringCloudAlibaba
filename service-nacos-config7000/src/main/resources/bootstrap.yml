@@ -4,10 +4,10 @@ spring:
   cloud:
     nacos:
       config:
-        server-addr: 127.0.0.1:8848
+        server-addr: 127.0.0.1:8848,127.0.0.1:8849,127.0.0.1:8850
         file-extension: yaml
-        namespace: 6d94c2eb-42f7-4aca-a5ac-66351abe85d8
-        group: 测试组
+        namespace: cdb2d77b-59b5-4695-960b-567a4adf7b10
+        group: DEFAULT_GROUP
 
         #多配置
 #        ext-config[0]:
@@ -18,7 +18,9 @@ spring:
 
       #
       discovery:
-        server-addr: 127.0.0.1:8848
+        server-addr: 127.0.0.1:8848,127.0.0.1:8849,127.0.0.1:8850
+        #指定注册服务的ip
+        ip: 192.168.4.206
 #
 #
 #
