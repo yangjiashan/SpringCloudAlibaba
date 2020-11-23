@@ -10,12 +10,17 @@ spring:
         server-addr: 127.0.0.1:8848
         #指定注册服务的ip
         ip: 192.168.4.206
+        #命名空间，这里指向dev
         namespace: cdb2d77b-59b5-4695-960b-567a4adf7b10
 
     sentinel:
       transport:
+        #客户端与控制台通信端口，如占用，自增端口号
         port: 8719
+        #dashboard控制台地址
         dashboard: 192.168.4.206:8080
+        #指定dashboard客户端ip，不设置很容易指向虚拟ip
+        clientIp: 192.168.4.206
 
       datasource:
         ds1:
@@ -23,13 +28,46 @@ spring:
             # nacos连接地址
             server-addr: 127.0.0.1:8848
             # nacos连接的分组
-            group-id: DEFAULT_GROUP
+            group-id: SENTINEL_GROUP
             # 路由存储规则
             rule-type: flow
             # 读取配置文件的 data-id
-            data-id: service-consumer9012
+            data-id: service-consumer9012-flow-rules
             # 读取文件类型为json
             data-type: json
+            namespace: cdb2d77b-59b5-4695-960b-567a4adf7b10
+
+
+        # 热点限流
+        param-flow:
+          nacos:
+            # nacos连接地址
+            server-addr: 127.0.0.1:8848
+            # nacos连接的分组
+            group-id: SENTINEL_GROUP
+            # 路由存储规则
+            rule-type: param-flow
+            # 读取配置文件的 data-id
+            data-id: ${spring.application.name}-param-flow-rules
+            # 读取文件类型为json
+            data-type: json
+            namespace: cdb2d77b-59b5-4695-960b-567a4adf7b10
+
+
+        # 降级规则
+        degrade:
+          nacos:
+            # nacos连接地址
+            server-addr: 127.0.0.1:8848
+            # nacos连接的分组
+            group-id: SENTINEL_GROUP
+            # 路由存储规则
+            rule-type: degrade
+            # 读取配置文件的 data-id
+            data-id: ${spring.application.name}-degrade-rules
+            # 读取文件类型为json
+            data-type: json
+            namespace: cdb2d77b-59b5-4695-960b-567a4adf7b10
 
 management:
   endpoints:

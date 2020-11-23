@@ -21,6 +21,7 @@ spring:
         server-addr: 127.0.0.1:8848,127.0.0.1:8849,127.0.0.1:8850
         #指定注册服务的ip
         ip: 192.168.4.206
+        namespace: cdb2d77b-59b5-4695-960b-567a4adf7b10
 #
 #
 #
@@ -32,4 +33,4 @@ server:
     context-path: /nacos
 
 
-  port: 8080
+  port: 7000

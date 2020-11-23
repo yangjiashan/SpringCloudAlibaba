@@ -13,4 +13,5 @@ public class Consumer9012Application {
     public static void main(String[] args) {
         SpringApplication.run(Consumer9012Application.class, args);
     }
+
 }
