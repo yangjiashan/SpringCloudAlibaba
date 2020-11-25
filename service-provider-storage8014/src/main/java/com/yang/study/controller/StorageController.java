@@ -30,7 +30,7 @@ public class StorageController {
      */
     @PostMapping("/storage/minisStorage")
     public CommonResult minisStorage(@RequestBody Storage storage) {
-        int i = 1/0;
+//        int i = 1/0;
         storageService.upadate(storage);
         return new CommonResult(200, "库存扣减成功");
     }

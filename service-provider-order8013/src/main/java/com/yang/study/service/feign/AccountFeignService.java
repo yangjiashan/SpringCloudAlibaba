@@ -3,7 +3,6 @@ package com.yang.study.service.feign;
 import com.yang.study.entity.Account;
 import com.yang.study.vo.CommonResult;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 

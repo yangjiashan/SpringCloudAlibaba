@@ -40,4 +40,22 @@ public class SeataOrderController {
         return new CommonResult(200, "下单成功");
     }
 
+    @RequestMapping(value = "/order/createOrder2")
+    public CommonResult createOrder2() {
+        Order order = new Order();
+        order.setUser_id("1");
+        order.setCount(2);
+        order.setCommodity_code("1001");
+        orderFeignService.create(order);
+
+        Storage storage = new Storage();
+        storage.setCount(2);
+        storage.setCommodity_code("1001");
+
+        storageFeignService.minisStorage(storage);
+
+        System.out.println("下单成功");
+        return new CommonResult(200, "下单成功");
+    }
+
 }

@@ -5,9 +5,9 @@ spring:
   application:
     name: service-consumer9012
   cloud:
-#    alibaba:
-#      seata:
-#        tx-service-group: my_test_tx_group
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group
 
     nacos:
       discovery:
@@ -86,118 +86,138 @@ logging:
       seata: info
 
 
-seata:
-  #是否开启spring-boot自动装配  默认为true
-  enabled: true
-  application-id: ${spring.application.name}
-  tx-service-group: my_test_tx_group
-  #是否开启数据源自动代理
-  enable-auto-data-source-proxy: true
-  #是否使用JDK代理作为数据源自动代理的实现方式
-  use-jdk-proxy: false
-  excludes-for-auto-proxying: firstClassNameForExclude,secondClassNameForExclude
-  client:
-    rm:
-      async-commit-buffer-limit: 1000
-      report-retry-count: 5
-      table-meta-check-enable: false
-      report-success-enable: false
-      saga-branch-register-enable: false
-      lock:
-        retry-interval: 10
-        retry-times: 30
-        retry-policy-branch-rollback-on-conflict: true
-    tm:
-      commit-retry-count: 5
-      rollback-retry-count: 5
-    undo:
-      data-validation: true
-      log-serialization: jackson
-      log-table: undo_log
-    #日志异常输出概率 默认100，目前用于undo回滚失败时异常堆栈输出，百分之一的概率输出，回滚失败基本是脏数据，无需输出堆栈占用硬盘空间
-    log:
-      exceptionRate: 100
-  service:
-    vgroup-mapping:
-      #
-      my_test_tx_group: default
-    grouplist:
-      default: 127.0.0.1:8091
-    enable-degrade: false
-    disable-global-transaction: false
-  transport:
-    shutdown:
-      wait: 3
-    thread-factory:
-      boss-thread-prefix: NettyBoss
-      worker-thread-prefix: NettyServerNIOWorker
-      server-executor-thread-prefix: NettyServerBizHandler
-      share-boss-worker: false
-      client-selector-thread-prefix: NettyClientSelector
-      client-selector-thread-size: 1
-      client-worker-thread-prefix: NettyClientWorkerThread
-      worker-thread-size: default
-      boss-thread-size: 1
-    type: TCP
-    server: NIO
-    heartbeat: true
-    serialization: seata
-    compressor: none
-    #客户端事务消息请求是否批量合并发送 默认true，false单条发送
-    enable-client-batch-send-request: true
-  config:
-    type: nacos
-    consul:
-      server-addr: 127.0.0.1:8500
-    apollo:
-      apollo-meta: http://192.168.1.204:8801
-      app-id: seata-server
-      namespace: application
-    etcd3:
-      server-addr: http://localhost:2379
-    nacos:
-      namespace: 145a6c37-b771-429b-828b-fd0f94ccbd30
-      serverAddr: localhost:8848,localhost:8849,localhost:8850
-      group: SEATA_GROUP
-      userName: "nacos"
-      password: "nacos"
-    zk:
-      server-addr: 127.0.0.1:2181
-      session-timeout: 6000
-      connect-timeout: 2000
-      username: ""
-      password: ""
-  registry:
-    type: nacos
-    consul:
-      server-addr: 127.0.0.1:8500
-    etcd3:
-      serverAddr: http://localhost:2379
-    eureka:
-      weight: 1
-      service-url: http://localhost:8761/eureka
-    nacos:
-      application: seata-server
-      server-addr: localhost:8848,localhost:8849,localhost:8850
-      namespace: cdb2d77b-59b5-4695-960b-567a4adf7b10
-      userName: "nacos"
-      password: "nacos"
-    redis:
-      server-addr: localhost:6379
-      db: 0
-      password:
-      timeout: 0
-    sofa:
-      server-addr: 127.0.0.1:9603
-      region: DEFAULT_ZONE
-      datacenter: DefaultDataCenter
-      group: SEATA_GROUP
-      addressWaitTime: 3000
-      application: default
-    zk:
-      server-addr: 127.0.0.1:2181
-      session-timeout: 6000
-      connect-timeout: 2000
-      username: ""
-      password: ""
+#seata:
+#  #是否开启spring-boot自动装配  默认为true
+#  enabled: true
+#  application-id: ${spring.application.name}
+#  tx-service-group: my_test_tx_group
+#  #是否开启数据源自动代理
+#  enable-auto-data-source-proxy: true
+#  #是否使用JDK代理作为数据源自动代理的实现方式
+#  use-jdk-proxy: false
+#  excludes-for-auto-proxying: firstClassNameForExclude,secondClassNameForExclude
+#  client:
+#    rm:
+#      #异步提交缓存队列长度,默认10000。 二阶段提交成功，RM异步清理undo队列
+#      async-commit-buffer-limit: 1000
+#      #一阶段结果上报TC重试次数，默认5次
+#      report-retry-count: 5
+#      #自动刷新缓存中的表结构，默认false
+#      table-meta-check-enable: false
+#      #是否上报一阶段成功 true、false，从1.1.0版本开始,默认false.true用于保持分支事务生命周期记录完整，false可提高不少性能
+#      report-success-enable: false
+#      saga-branch-register-enable: false
+#      lock:
+#        #校验或占用全局锁重试间隔，默认10，单位毫秒
+#        retry-interval: 10
+#        retry-times: 30
+#        #分支事务与其它全局回滚事务冲突时锁策略，默认true，优先释放本地锁让回滚成功
+#        retry-policy-branch-rollback-on-conflict: true
+#    tm:
+#      commit-retry-count: 5
+#      rollback-retry-count: 5
+#    undo:
+#      #二阶段回滚镜像校验 默认true开启，false关闭
+#      data-validation: true
+#      #undo序列化方式，默认jackson
+#      log-serialization: jackson
+#      #自定义undo表名，默认undo_log
+#      log-table: undo_log
+#    #日志异常输出概率 默认100，目前用于undo回滚失败时异常堆栈输出，百分之一的概率输出，回滚失败基本是脏数据，无需输出堆栈占用硬盘空间
+#    log:
+#      exceptionRate: 100
+#  service:
+#    vgroup-mapping:
+#      #事务群组 my_test_tx_group为分组，配置项值为TC集群名
+#      my_test_tx_group: default
+#    #TC服务列表, 仅注册中心为file时使用
+#    grouplist:
+#      default: 127.0.0.1:8091
+#    #降级开关 默认false。业务侧根据连续错误数自动降级不走seata事务(详细介绍请阅读附录6)
+#    enable-degrade: false
+#    #全局事务开关 默认false。false为开启，true为关闭
+#    disable-global-transaction: false
+#  transport:
+#    shutdown:
+#      wait: 3
+#    thread-factory:
+#      boss-thread-prefix: NettyBoss
+#      worker-thread-prefix: NettyServerNIOWorker
+#      server-executor-thread-prefix: NettyServerBizHandler
+#      share-boss-worker: false
+#      client-selector-thread-prefix: NettyClientSelector
+#      client-selector-thread-size: 1
+#      client-worker-thread-prefix: NettyClientWorkerThread
+#      worker-thread-size: default
+#      boss-thread-size: 1
+#    type: TCP
+#    server: NIO
+#    heartbeat: true
+#    serialization: seata
+#    compressor: none
+#    #客户端事务消息请求是否批量合并发送 默认true，false单条发送
+#    enable-client-batch-send-request: true
+#  config:
+#    type: nacos
+#    consul:
+#      server-addr: 127.0.0.1:8500
+#    apollo:
+#      apollo-meta: http://192.168.1.204:8801
+#      app-id: seata-server
+#      namespace: application
+#    etcd3:
+#      server-addr: http://localhost:2379
+#    nacos:
+#      namespace: 145a6c37-b771-429b-828b-fd0f94ccbd30
+#      serverAddr: localhost:8848,localhost:8849,localhost:8850
+#      group: SEATA_GROUP
+#      userName: "nacos"
+#      password: "nacos"
+#    zk:
+#      server-addr: 127.0.0.1:2181
+#      session-timeout: 6000
+#      connect-timeout: 2000
+#      username: ""
+#      password: ""
+#  registry:
+#    type: nacos
+#    consul:
+#      server-addr: 127.0.0.1:8500
+#    etcd3:
+#      serverAddr: http://localhost:2379
+#    eureka:
+#      weight: 1
+#      service-url: http://localhost:8761/eureka
+#    nacos:
+#      application: seata-server
+#      server-addr: localhost:8848,localhost:8849,localhost:8850
+#      namespace: cdb2d77b-59b5-4695-960b-567a4adf7b10
+#      userName: "nacos"
+#      password: "nacos"
+#    redis:
+#      server-addr: localhost:6379
+#      db: 0
+#      password:
+#      timeout: 0
+#    sofa:
+#      server-addr: 127.0.0.1:9603
+#      region: DEFAULT_ZONE
+#      datacenter: DefaultDataCenter
+#      group: SEATA_GROUP
+#      addressWaitTime: 3000
+#      application: default
+#    zk:
+#      server-addr: 127.0.0.1:2181
+#      session-timeout: 6000
+#      connect-timeout: 2000
+#      username: ""
+#      password: ""
 
+feign:
+  client:
+    config:
+      default:
+        #建立连接所用的时间，适用于网络状况正常的情况下，两端连接所需要的时间
+        ConnectTimeOut: 5000
+        #指建立连接后从服务端读取到可用资源所用的时间
+        ReadTimeOut: 5000

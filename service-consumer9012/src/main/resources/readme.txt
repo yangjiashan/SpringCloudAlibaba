@@ -1,0 +1,1 @@
+可以使用spring配置 或者 使用 file.conf+registry.conf
