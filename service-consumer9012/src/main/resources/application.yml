@@ -88,6 +88,9 @@ logging:
 
 seata:
   #是否开启spring-boot自动装配  默认为true
+
+
+
   enabled: true
   application-id: ${spring.application.name}
   tx-service-group: my_test_tx_group
