@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yang.study.dao.OrderDAO">
+
+    <resultMap id="BaseResultMap" type="com.yang.study.entity.Order">
+        <id column="id" property="id" jdbcType="INTEGER"></id>
+        <result column="user_id" property="user_id" jdbcType="VARCHAR"></result>
+        <result column="commodity_code" property="commodity_code" jdbcType="VARCHAR"></result>
+        <result column="count" property="count" jdbcType="INTEGER"></result>
+        <result column="money" property="money" jdbcType="INTEGER"></result>
+    </resultMap>
+
+    <insert id="create" parameterType="com.yang.study.entity.Order">
+        insert into order_tbl(user_id,commodity_code,count,money) values (#{user_id},#{commodity_code},#{count},#{money});
+    </insert>
+</mapper>

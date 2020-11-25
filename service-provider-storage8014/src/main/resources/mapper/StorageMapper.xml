@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yang.study.dao.StorageDAO">
+
+    <resultMap id="BaseResultMap" type="com.yang.study.entity.Storage">
+        <id column="id" property="id" jdbcType="INTEGER"></id>
+        <result column="commodity_code" property="commodity_code" jdbcType="VARCHAR"></result>
+        <result column="count" property="count" jdbcType="INTEGER"></result>
+    </resultMap>
+
+    <update id="update" parameterType="com.yang.study.entity.Storage">
+        update storage_tbl set count = count-#{count} where commodity_code = #{commodity_code}
+    </update>
+</mapper>

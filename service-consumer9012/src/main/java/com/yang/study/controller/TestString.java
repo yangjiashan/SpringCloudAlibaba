@@ -2,7 +2,6 @@ package com.yang.study.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.yang.study.exception.CommonBlockerHandler;
-import com.yang.study.exception.CommonFallbackHandler;
 import com.yang.study.service.TestFeignService;
 import com.yang.study.service.TestStringService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,9 @@ public class TestString {
     private TestStringService testStringService;
 
     @RequestMapping("/testString")
-    @SentinelResource(value = "testString", blockHandlerClass = CommonBlockerHandler.class, blockHandler = "process", fallbackClass = CommonFallbackHandler.class, fallback = "process")
+//    @SentinelResource(value = "testString", blockHandlerClass = CommonBlockerHandler.class, blockHandler = "process", fallbackClass = CommonFallbackHandler.class, fallback = "process")
+    @SentinelResource(value = "testString", blockHandlerClass = CommonBlockerHandler.class, blockHandler = "process")
+    // blockHandler处理违反控制台配置规则，fallback处理java程序出现的异常
     public String testString() {
         int i = 1 / 0;
         return testFeignService.testString();
