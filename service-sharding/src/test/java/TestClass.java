@@ -2,7 +2,6 @@ import com.yang.study.ServiceSharding8016Application;
 import com.yang.study.dao.AccountDAO;
 import com.yang.study.entity.Account;
 import org.junit.Test;
-import org.junit.platform.commons.util.ExceptionUtils;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,6 +19,7 @@ public class TestClass {
     private AccountDAO accountDAO;
 
     @Test
+    // sharding有提供基于XA的事务，等待加入
     @Transactional(rollbackFor = Exception.class)
     public void test1() {
         Random random = new Random();
