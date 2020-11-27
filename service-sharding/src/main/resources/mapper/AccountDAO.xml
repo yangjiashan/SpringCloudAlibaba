@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yang.study.dao.AccountDAO">
+
+    <resultMap id="BaseResultMap" type="com.yang.study.entity.Account">
+        <id column="id" property="id" jdbcType="INTEGER"></id>
+        <result column="user_id" property="user_id" jdbcType="VARCHAR"></result>
+        <result column="money" property="money" jdbcType="INTEGER"></result>
+    </resultMap>
+
+    <insert id="add" parameterType="com.yang.study.entity.Account">
+        insert into account_tbl(user_id, money) values(#{user_id}, #{money})
+    </insert>
+
+    <insert id="addDefault" parameterType="com.yang.study.entity.Account">
+        insert into account(user_id, money) values(#{user_id}, #{money})
+    </insert>
+</mapper>

@@ -20,3 +20,12 @@ public class FclassTest<E> {
 
 
 }
+
+
+class test2{
+
+    public static void get() {
+
+    }
+
+}
