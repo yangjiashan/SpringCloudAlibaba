@@ -1,0 +1,19 @@
+server:
+  port: 9011
+
+spring:
+  application:
+    name: service-fastdfs9011
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        #指定注册服务的ip
+        ip: 192.168.2.106
+        namespace: cdb2d77b-59b5-4695-960b-567a4adf7b10
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

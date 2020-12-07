@@ -11,9 +11,9 @@ spring:
 
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848,127.0.0.1:8849,127.0.0.1:8850
+        server-addr: 127.0.0.1:8848
         #指定注册服务的ip
-        ip: 192.168.4.206
+        ip: 192.168.2.106
         #命名空间，这里指向dev
         namespace: cdb2d77b-59b5-4695-960b-567a4adf7b10
 
@@ -22,15 +22,15 @@ spring:
         #客户端与控制台通信端口，如占用，自增端口号
         port: 8719
         #dashboard控制台地址
-        dashboard: 192.168.4.206:8080
+        dashboard: 192.168.2.106:8080
         #指定dashboard客户端ip，不设置很容易指向虚拟ip
-        clientIp: 192.168.4.206
+        clientIp: 192.168.2.106
 
       datasource:
         ds1:
           nacos:
             # nacos连接地址
-            server-addr: 127.0.0.1:8848,127.0.0.1:8849,127.0.0.1:8850
+            server-addr: 127.0.0.1:8848
             # nacos连接的分组
             group-id: SENTINEL_GROUP
             # 路由存储规则

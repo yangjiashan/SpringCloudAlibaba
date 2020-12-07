@@ -18,6 +18,7 @@
         <module>service-provider-account8015</module>
         <module>service-model</module>
         <module>service-sharding</module>
+        <module>service-fastdfs-test</module>
     </modules>
     <packaging>pom</packaging>
 
