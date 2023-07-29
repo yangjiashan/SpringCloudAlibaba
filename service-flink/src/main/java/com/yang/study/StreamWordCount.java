@@ -14,7 +14,7 @@ public class StreamWordCount {
 
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
-        DataStreamSource<String> dataStreamSource = env.socketTextStream("192.168.142.202", 7777);
+        DataStreamSource<String> dataStreamSource = env.socketTextStream("10.231.6.187", 7777);
 
         // 3.转换计算
         SingleOutputStreamOperator<Tuple2<String, Long>> outputStreamOperator = dataStreamSource.flatMap((String line, Collector<Tuple2<String, Long>> out) -> {

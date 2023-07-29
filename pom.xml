@@ -44,7 +44,7 @@
         <hutool-all.version>5.1.0</hutool-all.version>
         <sharding-sphere.version>4.0.0-RC1</sharding-sphere.version>
 
-        <flink.version>1.13.0</flink.version>
+        <flink.version>1.17.0</flink.version>
         <java.version>1.8</java.version>
         <scala.binary.version>2.12</scala.binary.version>
         <slf4j.version>1.7.30</slf4j.version>
