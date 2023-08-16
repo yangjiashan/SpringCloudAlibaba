@@ -32,7 +32,7 @@ public class StreamWordCount {
 
         sum.print();
 
-        env.execute();
+        env.executeAsync();
 
 
 
