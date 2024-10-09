@@ -23,6 +23,7 @@
         <module>service-elasticsearch</module>
         <module>service-zkclient</module>
         <module>service-flink</module>
+        <module>service-krb</module>
     </modules>
     <packaging>pom</packaging>
 
