@@ -39,15 +39,15 @@ public class SourceKafka {
         env.setParallelism(2);
         env.enableCheckpointing(2000, CheckpointingMode.EXACTLY_ONCE);
 
-        KafkaSource<String> kafkaSource = KafkaSource.<String>builder().setBootstrapServers("10.231.6.192:9092")
+        KafkaSource<String> kafkaSource = KafkaSource.<String>builder().setBootstrapServers("10.231.6.115:9092")
                 .setTopics("first")
                 .setGroupId("test-consumer-group")
-                .setStartingOffsets(OffsetsInitializer.committedOffsets())
+                .setStartingOffsets(OffsetsInitializer.earliest())
                 .setValueOnlyDeserializer(new SimpleStringSchema())
                 .build();
 
         KafkaSink<String> kafkaSink = KafkaSink.<String>builder()
-                .setBootstrapServers("10.231.6.192:9092")
+                .setBootstrapServers("10.231.6.115:9092")
                 .setRecordSerializer(KafkaRecordSerializationSchema.builder().setTopic("second").setValueSerializationSchema(new SimpleStringSchema()).build())
                 .setDeliveryGuarantee(DeliveryGuarantee.EXACTLY_ONCE)
                 .setTransactionalIdPrefix("prefix-")
